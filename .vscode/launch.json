@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible Node.js debug attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+		{
+            "type":"node",
+            "request": "launch",
+            "name": "debug file",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}",
+            "outFiles": ["${workspaceRoot}/build/**/*.js"],
+            "sourceMaps": true
+        },
+		{
+            "type":"node",
+            "request": "launch",
+            "name": "generateModels",
+            "program": "${workspaceRoot}/src/utils/generateModels/generateModels.ts",
+            "cwd": "${workspaceRoot}",
+            "outFiles": ["${workspaceRoot}/build/**/*.js"],
+            "sourceMaps": true,
+			"preLaunchTask": "build"
+        },
+        {
+            "type":"node",
+            "request": "launch",
+            "name": "Start Server",
+            "program": "${workspaceRoot}/src/index.ts",
+            "cwd": "${workspaceRoot}",
+            "outFiles": ["${workspaceRoot}/build/**/*.js"],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Process",
+            "port": 5858,
+            "outFiles": [],
+            "sourceMaps": true
+        }
+    ]
+}
