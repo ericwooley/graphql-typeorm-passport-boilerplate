@@ -1,15 +1,26 @@
-import {Table, PrimaryGeneratedColumn, Column} from 'typeorm'
-
+import 'reflect-metadata';
+import {Table, PrimaryGeneratedColumn, Column, OneToMany, JoinTable, } from 'typeorm'
+import ShoppingList from './shoppingList'
+import * as bcrypt from 'bcrypt'
 @Table()
 export default class User {
 	@PrimaryGeneratedColumn()
 	public id?: number
-
 	@Column()
-	public username?: string
-
+	public username: string
 	@Column()
-	public password?: string
+	password: string
+	setPassword(pw: string) {
+		this.password = pw
+	}
+	async validatePassword(plainTextPassword: string) {
+		return await bcrypt.compare(plainTextPassword, this.password + '')
+	}
+	@OneToMany(type => ShoppingList, shoppingList => shoppingList.owner, {
+		cascadeAll: true
+	})
+	@JoinTable()
+	lists: Promise<ShoppingList[]>
 
 	toJSON() {
 		return {

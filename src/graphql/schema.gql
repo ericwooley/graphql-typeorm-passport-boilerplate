@@ -1,7 +1,16 @@
+type List {
+	owner: User,
+	id: Int,
+	name: String
+}
 type User {
 	username: String
 	id: Int
+	lists: [List]
 }
 type Query {
 	user: User
+}
+type Mutation {
+	createList (name: String!): List
 }

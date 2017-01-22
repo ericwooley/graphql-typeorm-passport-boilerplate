@@ -8,22 +8,22 @@ export default async function setupPassport(server: Express) {
 	const userRepo = (await getConnection()).getRepository(User)
 	passport.use('local', new LocalStrategy(
 		async function (username: string, password: string, done: Function) {
-
 			const searchUser = new User()
 			searchUser.username = username
-			const user = await userRepo.findOne(searchUser)
+			const user = await userRepo.findOne({username})
 			if (!user) {
 				done(null, false, { message: 'Could not find that user' })
 			} else {
-				const passwordIsCorrect = await bcrypt.compare(password, user.password + '')
+				const passwordIsCorrect = await user.validatePassword(password)
 				if (passwordIsCorrect) {
-					setTimeout(() => done(null, user), Math.floor(Math.random() * 20))
+					setTimeout(() => done(null, user.toJSON()), Math.floor(Math.random() * 20))
 				} else {
 					setTimeout(() => done(null, false, { message: 'Incorrect password' }), Math.floor(Math.random() * 20))
 				}
 			}
 		}));
 	passport.serializeUser(function (user: User, done: Function) {
+		console.log(user)
 		done(null, user.id);
 	});
 	passport.deserializeUser(async function (id: number, done) {
@@ -31,7 +31,7 @@ export default async function setupPassport(server: Express) {
 		if (user) {
 			done(null, user)
 		} else {
-			done(new Error('User auth error'), {})
+			done(null, {})
 		}
 	});
 	server.use(passport.initialize())
@@ -70,10 +70,9 @@ export default async function setupPassport(server: Express) {
 			response.send(JSON.stringify('User already exists'))
 		} else {
 			const hashedPassword = await hashPassword(password)
-
 			const newUser = new User()
 			newUser.username = username
-			newUser.password = hashedPassword
+			newUser.setPassword(hashedPassword)
 			const createdUser: User = await userRepo.persist(newUser)
 			response.send(JSON.stringify(createdUser.toJSON()))
 		}

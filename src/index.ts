@@ -8,6 +8,7 @@ import {
 } from 'graphql'
 import { Request } from 'express'
 import getServer from './server'
+import rootValue, {schema as graphqlSchema} from './graphql'
 import { readFileSync } from 'fs'
 (async function () {
 	const server = await getServer()
@@ -15,15 +16,8 @@ import { readFileSync } from 'fs'
 	require('dotenv').config({ path: join(__dirname, '../.enviornment') });
 	const env = process.env.NODE_ENV || 'production'
 	// const isdev = env === 'dev'
-	var schema = buildSchema(
-		readFileSync(join(__dirname, './graphql/schema.gql')).toString()
-	)
-	const rootValue = {
-		user: (args: any, request: Request) => request.user,
-		hello: (args: any, request: any) => {
-			return 'hello'
-		}
-	}
+	const schema = buildSchema(graphqlSchema)
+
 	server.use('/graphql', (request, response, next) => {
 		if (!request.user) {
 			response.statusCode = 403
