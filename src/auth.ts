@@ -3,9 +3,10 @@ import { Express, Response, Request } from 'express'
 let LocalStrategy = require('passport-local').Strategy;
 import { getConnection } from './models'
 import User from './models/user'
+import {Connection} from 'typeorm'
 import * as bcrypt from 'bcrypt'
-export default async function setupPassport(server: Express) {
-	const userRepo = (await getConnection()).getRepository(User)
+export default async function setupPassport(server: Express, connection: Connection) {
+	const userRepo = connection.getRepository(User)
 	passport.use('local', new LocalStrategy(
 		async function (username: string, password: string, done: Function) {
 			const searchUser = new User()

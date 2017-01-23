@@ -6,8 +6,10 @@ import * as uuid from 'node-uuid'
 import setupPassport from './auth'
 import * as bodyParser from 'body-parser'
 import * as connectRedis from 'connect-redis'
+import {Connection} from 'typeorm'
+
 const RedisStore = connectRedis(session)
-export default async function getServer () {
+export default async function getServer (connection: Connection) {
 	let server = express()
 	server.use(session({
 		secret: 'asdfasdfs',
@@ -18,6 +20,6 @@ export default async function getServer () {
 	}))
 	server.use(bodyParser());
 	server.use(flash())
-	server = await setupPassport(server)
+	server = await setupPassport(server, connection)
 	return server
 }
