@@ -2,6 +2,9 @@ import "reflect-metadata"
 import { createConnection, Connection, Repository } from "typeorm"
 import User from './user'
 import ShoppingList from './shoppingList'
+import Item from './item'
+import Store from './store'
+import StoreItemLocation from './storeItemLocation'
 import {memoize} from 'lodash'
 import {yellow, red} from 'chalk'
 export let connection: Connection
@@ -24,8 +27,11 @@ export async function getConnection () {
 				storage: 'testDatabase.db'
 			},
 			entities: [
+				Item,
 				User,
-				ShoppingList
+				ShoppingList,
+				StoreItemLocation,
+				Store
 			],
 			autoSchemaSync: true,
 		})

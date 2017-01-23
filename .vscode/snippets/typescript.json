@@ -1,0 +1,27 @@
+{
+	"type-orm-table": {
+		"prefix": "",
+		"body": [
+			"import 'reflect-metadata';",
+			"import {Table, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from 'typeorm'",
+			"import User from './user'",
+			"",
+			"@Table()",
+			"export default class ShoppingList {",
+			"\\t@PrimaryGeneratedColumn()",
+			"\\tid: number",
+			"",
+			"\\t@Column()",
+			"\\tname: string",
+			"",
+			"\\t@ManyToOne(type => User, user => user.lists, {",
+			"\\t\\tcascadeAll: true",
+			"\\t})",
+			"\\t@JoinTable()",
+			"\\towner: Promise<User>",
+			"}",
+			""
+		],
+		"description": "ORM snippet for creating a table"
+	}
+}

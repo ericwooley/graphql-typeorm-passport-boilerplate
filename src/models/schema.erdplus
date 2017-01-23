@@ -1,0 +1,546 @@
+{
+	"version": 2,
+	"www": "erdplus.com",
+	"shapes": [
+		{
+			"type": "Table",
+			"details": {
+				"name": "User",
+				"x": 353,
+				"y": 151,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"username"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "varcharn",
+						"dataTypeSize": "200",
+						"id": 2
+					},
+					{
+						"names": [
+							"password"
+						],
+						"order": 3,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "varcharn",
+						"dataTypeSize": "200",
+						"id": 3
+					},
+					{
+						"names": [
+							"lists"
+						],
+						"order": 4,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 4
+					}
+				],
+				"uniqueGroups": [],
+				"id": 1
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "shopping_list",
+				"x": 355,
+				"y": 25,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"name"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 2
+					},
+					{
+						"names": [
+							"owner"
+						],
+						"order": 3,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 1,
+								"attributeId": 1
+							}
+						],
+						"id": 3
+					}
+				],
+				"uniqueGroups": [],
+				"id": 4
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "shoping_list-items",
+				"x": 546,
+				"y": 147,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"shopping_list"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 4,
+								"attributeId": 1
+							}
+						],
+						"id": 2
+					},
+					{
+						"names": [
+							"items"
+						],
+						"order": 4,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 11,
+								"attributeId": 1
+							}
+						],
+						"id": 4
+					}
+				],
+				"uniqueGroups": [],
+				"id": 7
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "items",
+				"x": 751,
+				"y": 88,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"name"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 2
+					}
+				],
+				"uniqueGroups": [],
+				"id": 11
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "Store",
+				"x": 756,
+				"y": 308,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"lat"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 2
+					},
+					{
+						"names": [
+							"lon"
+						],
+						"order": 3,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 3
+					},
+					{
+						"names": [
+							"name"
+						],
+						"order": 4,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 4
+					},
+					{
+						"names": [
+							"address"
+						],
+						"order": 5,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 5
+					}
+				],
+				"uniqueGroups": [],
+				"id": 27
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "Store-Item-Locations",
+				"x": 1018,
+				"y": 138,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"location"
+						],
+						"order": 3,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 3
+					},
+					{
+						"names": [
+							"item"
+						],
+						"order": 5,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 11,
+								"attributeId": 1
+							}
+						],
+						"id": 5
+					},
+					{
+						"names": [
+							"store"
+						],
+						"order": 6,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 27,
+								"attributeId": 1
+							}
+						],
+						"id": 6
+					}
+				],
+				"uniqueGroups": [],
+				"id": 28
+			}
+		},
+		{
+			"type": "Table",
+			"details": {
+				"name": "item_proximity",
+				"x": 758,
+				"y": 185,
+				"sort": "automatic",
+				"attributes": [
+					{
+						"names": [
+							"id"
+						],
+						"order": 1,
+						"pkMember": true,
+						"optional": false,
+						"soloUnique": false,
+						"fk": false,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"id": 1
+					},
+					{
+						"names": [
+							"item1"
+						],
+						"order": 2,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 11,
+								"attributeId": 1
+							}
+						],
+						"id": 2
+					},
+					{
+						"names": [
+							"item2"
+						],
+						"order": 3,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 11,
+								"attributeId": 1
+							}
+						],
+						"id": 3
+					},
+					{
+						"names": [
+							"store"
+						],
+						"order": 4,
+						"pkMember": false,
+						"optional": false,
+						"soloUnique": false,
+						"fk": true,
+						"dataType": "int",
+						"dataTypeSize": null,
+						"references": [
+							{
+								"tableId": 27,
+								"attributeId": 1
+							}
+						],
+						"id": 4
+					}
+				],
+				"uniqueGroups": [],
+				"id": 32
+			}
+		}
+	],
+	"connectors": [
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 3,
+				"id": 5
+			},
+			"source": 1,
+			"destination": 4
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 2,
+				"id": 8
+			},
+			"source": 4,
+			"destination": 7
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 4,
+				"id": 26
+			},
+			"source": 11,
+			"destination": 7
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 5,
+				"id": 30
+			},
+			"source": 11,
+			"destination": 28
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 6,
+				"id": 31
+			},
+			"source": 27,
+			"destination": 28
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 2,
+				"id": 33
+			},
+			"source": 11,
+			"destination": 32
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 3,
+				"id": 34
+			},
+			"source": 11,
+			"destination": 32
+		},
+		{
+			"type": "TableConnector",
+			"details": {
+				"fkAttributeId": 4,
+				"id": 35
+			},
+			"source": 27,
+			"destination": 32
+		}
+	],
+	"width": 2000,
+	"height": 1000
+}
