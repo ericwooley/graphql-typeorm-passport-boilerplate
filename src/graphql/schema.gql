@@ -14,7 +14,8 @@ type User {
 	lists: [ShoppingList]
 }
 type Query {
-	user: User
+	user: User,
+	shoppingLists: [ShoppingList]
 }
 type Mutation {
 	createList (name: String!): ShoppingList
