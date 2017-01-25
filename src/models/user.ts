@@ -25,10 +25,10 @@ export default class User {
 	})
 	lists: Promise<ShoppingList[]>
 
-	toJSON() {
-		return {
-			id: this.id,
-			username: this.username
-		}
-	}
+	// toJSON() {
+	// 	return {
+	// 		id: this.id,
+	// 		username: this.username
+	// 	}
+	// }
 }

@@ -18,7 +18,7 @@ export default function buildGraphQLRouteHandler () {
 			typeDefs: schema,
 			resolvers
 		}),
-		context: {request},
+		context: request,
 		logger: (e: string) => console.log('GRAPHQL', green(e))
 	}))
 }
