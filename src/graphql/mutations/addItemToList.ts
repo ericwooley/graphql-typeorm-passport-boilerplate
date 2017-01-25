@@ -2,7 +2,7 @@ import ShoppingList from '../../models/shoppingList'
 import Item from '../../models/item'
 import {connection} from '../../models/'
 import {Request} from 'express'
-export default async function addItemToList ({listId, itemId, name}: {listId: number, itemId?: number, name: string}, request: Request) {
+export default async function addItemToList (object: any, {listId, itemId, name}: {listId: number, itemId?: number, name: string}, {request}: {request: Request}) {
 	if (itemId !== undefined && name) {
 		throw new Error('You can only supply a name, or an item id. Not both.')
 	}

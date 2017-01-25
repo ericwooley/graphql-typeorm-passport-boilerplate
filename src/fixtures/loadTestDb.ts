@@ -1,6 +1,7 @@
 import {getConnection, closeDBConnection} from '../models'
 import * as shelljs from 'shelljs'
 import * as os from 'os'
+import {Connection} from 'typeorm'
 import {join} from 'path'
 export default async function loadTestDB(dbName: string, enableLogger = false) {
 	const tempDir = os.tmpdir()
@@ -8,6 +9,10 @@ export default async function loadTestDB(dbName: string, enableLogger = false) {
 	shelljs.cp(testDBLocation, tempDir)
 	const storage = join(tempDir,  dbName +'.db')
 	closeDBConnection()
-	const connection = await getConnection({type: 'sqlite', storage: storage}, enableLogger)
-	return connection
+	return new Promise<Connection>(async (resolve) => {
+		setTimeout(async () => {
+			const connection = await getConnection({type: 'sqlite', storage: storage}, enableLogger)
+			resolve(connection)
+		}, 10)
+	})
 }

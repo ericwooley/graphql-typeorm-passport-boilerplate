@@ -1,21 +1,24 @@
 import { join } from 'path'
 import { readFileSync } from 'fs'
-import {
-	graphql,
-	buildSchema
-} from 'graphql'
-import * as graphqlHTTP from 'express-graphql'
 import mutations from './mutations'
 import queries from './queries'
-export const rootValue = {
-	...queries,
-	...mutations,
+import { graphqlExpress } from 'graphql-server-express';
+import {makeExecutableSchema} from 'graphql-tools'
+import {green} from 'chalk'
+export const schema = readFileSync(join(__dirname, './schema.gql')).toString()
+
+export const resolvers = {
+	Query: queries,
+	Mutation: mutations,
 }
-export const schema = buildSchema(readFileSync(join(__dirname, './schema.gql')).toString())
+
 export default function buildGraphQLRouteHandler () {
-	return  graphqlHTTP({
-		schema,
-		rootValue,
-		graphiql: true
-	})
+	return graphqlExpress((request) => ({
+		schema: makeExecutableSchema({
+			typeDefs: schema,
+			resolvers
+		}),
+		context: {request},
+		logger: (e: string) => console.log('GRAPHQL', green(e))
+	}))
 }

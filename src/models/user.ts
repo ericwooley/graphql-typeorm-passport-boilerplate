@@ -6,19 +6,24 @@ import * as bcrypt from 'bcrypt'
 export default class User {
 	@PrimaryGeneratedColumn()
 	public id?: number
+
 	@Column()
 	public username: string
+
 	@Column()
 	password: string
 	setPassword(pw: string) {
 		this.password = pw
 	}
+
 	async validatePassword(plainTextPassword: string) {
 		return await bcrypt.compare(plainTextPassword, this.password + '')
 	}
+
 	@OneToMany(type => ShoppingList, shoppingList => shoppingList.owner, {
 		cascadeAll: true
 	})
+
 	@JoinTable()
 	lists: Promise<ShoppingList[]>
 
