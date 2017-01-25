@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {Table, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable, } from 'typeorm'
+import {Table, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, } from 'typeorm'
 import ShoppingList from './shoppingList'
 @Table()
 export default class Item {
@@ -9,7 +9,6 @@ export default class Item {
 	@Column()
 	public name: string
 
-	@ManyToOne(type => ShoppingList, shoppingList => shoppingList.items)
-	@JoinTable()
+	@ManyToMany(type => ShoppingList, shoppingList => shoppingList.items)
 	shoppingLists: Promise<ShoppingList>
 }

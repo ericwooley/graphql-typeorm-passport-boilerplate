@@ -17,6 +17,5 @@ export default class ShoppingList {
 	@ManyToOne(type => User, user => user.lists, {
 		cascadeAll: true
 	})
-	@JoinTable()
 	owner: Promise<User>
 }

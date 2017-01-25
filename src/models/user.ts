@@ -23,8 +23,6 @@ export default class User {
 	@OneToMany(type => ShoppingList, shoppingList => shoppingList.owner, {
 		cascadeAll: true
 	})
-
-	@JoinTable()
 	lists: Promise<ShoppingList[]>
 
 	toJSON() {
