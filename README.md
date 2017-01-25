@@ -23,7 +23,7 @@
 	This should open a node server on [port 8090](http://localhost:8090),
 	and will run the tests and reload any time you make a change.
 
-2. graphiql should be available at [here](http://localhost:8090/graphql).
+2. graphiql should be available at [here](http://localhost:8090/graphiql).
 
 3. run `npm run test:coverage` to run tests that will fail if there isn't enough coverage.
 

@@ -10,6 +10,9 @@ export default async function startServer ({isDev = false, isTest = false}, dbCo
 	const app = await getServer(connection)
 	// Adds Enviornment variables from .enviornment
 	const env = (isDev && 'development') || (isTest && 'test') || 'production'
+	app.use('/', (request, response) => {
+		response.redirect('/login')
+	})
 	app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}))
 	app.use('/graphql', (request, response, next) => {
 		if (!request.user) {

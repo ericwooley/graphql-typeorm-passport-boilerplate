@@ -83,7 +83,7 @@ export default async function setupPassport(server: Express, connection: Connect
 		return await bcrypt.hash(password, saltRounds);
 	}
 	function loginSuccess(req: Request, response: Response) {
-		response.redirect('/graphql')
+		response.redirect('/graphiql')
 	}
 	function loginForm(req: Request, response: Response) {
 		if (req.user && req.user.id) {
