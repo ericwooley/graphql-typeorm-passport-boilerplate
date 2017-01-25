@@ -38,7 +38,6 @@ export default async function setupPassport(server: Express, connection: Connect
 	server.use(passport.initialize())
 	server.use(passport.session())
 
-	server.get('/login', loginForm)
 	server.get('/login-failure', loginFailure)
 	server.post('/login',
 		passport.authenticate('local', {
@@ -47,6 +46,7 @@ export default async function setupPassport(server: Express, connection: Connect
 		}),
 		loginSuccess
 	)
+	server.get('/login', loginForm)
 	server.post('/register', registerUser)
 	function loginFailure(req: Request, response: Response) {
 		response.statusCode = 403
@@ -87,11 +87,7 @@ export default async function setupPassport(server: Express, connection: Connect
 	}
 	function loginForm(req: Request, response: Response) {
 		if (req.user && req.user.id) {
-			response.send(`
-			You are logged in as
-			<pre>${JSON.stringify(req.user, null, 6)}</pre>
-			<a href='/logout'>logout?</a>
-			`)
+			response.redirect('/graphiql')
 		} else {
 			response.send(`
 				<html>

@@ -18,7 +18,10 @@ export default async function getServer (connection: Connection) {
 		},
 		store: new RedisStore({})
 	}))
-	server.use(bodyParser());
+	server.use(bodyParser.urlencoded({
+		extended: true
+	}))
+	server.use(bodyParser.json());
 	server.use(flash())
 	server = await setupPassport(server, connection)
 	return server

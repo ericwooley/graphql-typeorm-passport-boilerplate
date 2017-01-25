@@ -1,5 +1,5 @@
 // APP entry point.
-import { Request } from 'express'
+import { Request, Response } from 'express'
 import getServer from './server'
 import buildGraphQLRouteHandler from './graphql'
 import {getConnection} from './models'
@@ -10,17 +10,19 @@ export default async function startServer ({isDev = false, isTest = false}, dbCo
 	const app = await getServer(connection)
 	// Adds Enviornment variables from .enviornment
 	const env = (isDev && 'development') || (isTest && 'test') || 'production'
-	app.use('/', (request, response) => {
-		response.redirect('/login')
-	})
-	app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}))
-	app.use('/graphql', (request, response, next) => {
+	function authenticatedOnly (request: Request, response: Response, next: Function) {
 		if (!request.user) {
 			response.statusCode = 403
 			response.redirect('/login')
 		} else {
 			next()
 		}
-	}, buildGraphQLRouteHandler());
+	}
+	
+	app.use('/graphql', authenticatedOnly, buildGraphQLRouteHandler());
+	app.use('/graphiql', authenticatedOnly, graphiqlExpress({endpointURL: '/graphql'}))
+	app.use('/', (request, response) => {
+		response.redirect('/login')
+	})
 	return app
 }
