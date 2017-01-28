@@ -20,9 +20,7 @@ export default class User {
 		return await bcrypt.compare(plainTextPassword, this.password + '')
 	}
 
-	@OneToMany(type => ShoppingList, shoppingList => shoppingList.owner, {
-		cascadeAll: true
-	})
+	@OneToMany(type => ShoppingList, shoppingList => shoppingList.owner)
 	lists: Promise<ShoppingList[]>
 
 	toJSON() {

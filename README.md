@@ -11,6 +11,7 @@
 ## Dependencies
 
 1. Node 6
+2. Redis
 
 ## Getting started
 

@@ -86,7 +86,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^6.0.54", "@types/node@^6.0.55":
+"@types/node@*", "@types/node@^6.0.55":
   version "6.0.60"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.60.tgz#e7e134ebc674ae6ed93c36c767739b110d2c57fc"
 
@@ -2204,7 +2204,7 @@ redis@^2.1.0:
     redis-commands "^1.2.0"
     redis-parser "^2.0.0"
 
-reflect-metadata@^0.1.8, reflect-metadata@^0.1.9:
+reflect-metadata@^0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.9.tgz#987238dc87a516895fe457f130435ffbd763a4d4"
 
@@ -2687,16 +2687,15 @@ type-is@~1.6.13, type-is@~1.6.14:
     media-typer "0.3.0"
     mime-types "~2.1.13"
 
-typeorm@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.0.6.tgz#5c3fc1a4b2d97c742f848b7d4157919bc8c20dd6"
+typeorm@0.0.8-alpha.2:
+  version "0.0.8-alpha.2"
+  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.0.8-alpha.2.tgz#8c4263f851e3943ddd6a0f68cd66f35cca99ee0a"
   dependencies:
-    "@types/node" "^6.0.54"
     app-root-path "^2.0.1"
     glob "^7.1.1"
-    reflect-metadata "^0.1.8"
+    reflect-metadata "^0.1.9"
     yargonaut "^1.1.2"
-    yargs "^6.5.0"
+    yargs "^6.6.0"
 
 typescript@^2.1.5:
   version "2.1.5"
@@ -2878,7 +2877,7 @@ yargs-parser@^4.0.2, yargs-parser@^4.2.0:
   dependencies:
     camelcase "^3.0.0"
 
-yargs@^6.5.0, yargs@^6.6.0:
+yargs@^6.6.0:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
   dependencies:

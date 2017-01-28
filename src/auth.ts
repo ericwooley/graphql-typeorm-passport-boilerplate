@@ -24,7 +24,6 @@ export default async function setupPassport(server: Express, connection: Connect
 			}
 		}));
 	passport.serializeUser(function (user: User, done: Function) {
-		console.log(user)
 		done(null, user.id);
 	});
 	passport.deserializeUser(async function (id: number, done) {
@@ -41,8 +40,8 @@ export default async function setupPassport(server: Express, connection: Connect
 	server.get('/login-failure', loginFailure)
 	server.post('/login',
 		passport.authenticate('local', {
-			failureRedirect: '/login',
-			failureFlash: true
+			// failureRedirect: '/login',
+			// failureFlash: true
 		}),
 		loginSuccess
 	)
@@ -83,7 +82,8 @@ export default async function setupPassport(server: Express, connection: Connect
 		return await bcrypt.hash(password, saltRounds);
 	}
 	function loginSuccess(req: Request, response: Response) {
-		response.redirect('/graphiql')
+		response.setHeader('Content-Type', 'Application/JSON')
+		response.send(JSON.stringify(req.user))
 	}
 	function loginForm(req: Request, response: Response) {
 		if (req.user && req.user.id) {

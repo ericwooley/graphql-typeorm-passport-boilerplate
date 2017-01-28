@@ -77,7 +77,7 @@
     "sqlite3": "^3.1.8",
     "supertest": "^2.0.1",
     "ts-node": "^2.0.0",
-    "typeorm": "0.0.6",
+    "typeorm": "0.0.8-alpha.2",
     "typescript": "^2.1.5"
   },
   "nyc": {
