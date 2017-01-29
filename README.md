@@ -1,3 +1,8 @@
+# THIS IS A WORK IN PROGRESS
+This is a work in progress, and is not production ready. Feel free to use it as a base, but it's not production ready by any means.
+
+If you want to see how to connect with this repo (using react) checkout [this repo](https://github.com/ericwooley/gtpb-react-test-and-demo)
+
 ## Prerequiset Knowledge
 1. Learn typescript, lynda and egghead.io have great tutorials. Or check the main website.
 2. Learn typescripts async/await.

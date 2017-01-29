@@ -7,10 +7,21 @@ import setupPassport from './auth'
 import * as bodyParser from 'body-parser'
 import * as connectRedis from 'connect-redis'
 import {Connection} from 'typeorm'
-
+import {red} from 'chalk'
+import * as cors from 'cors'
 const RedisStore = connectRedis(session)
-export default async function getServer (connection: Connection) {
+export default async function getServer (connection: Connection, isDev = false) {
 	let server = express()
+	if (isDev) {
+		const corsOptions = {
+			origin: function(origin: string, callback: Function){
+				// var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+				callback(null, true);
+			},
+			credentials: true
+		};
+		server.use(cors(corsOptions));
+	}
 	server.use(session({
 		secret: 'asdfasdfs',
 		genid: function (req) {
