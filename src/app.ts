@@ -15,10 +15,10 @@ export default async function startServer ({isDev = false, isTest = false}, dbCo
 	function authenticatedOnly (request: Request, response: Response, next: Function) {
 		if (!request.user) {
 			console.log('no user', request.user)
-			response.statusCode = 403
-			response.send()
+			// response.statusCode = 403
+			return response.send()
 		} else {
-			next()
+			return next()
 		}
 	}
 
@@ -29,8 +29,8 @@ export default async function startServer ({isDev = false, isTest = false}, dbCo
 	// 	}
 	// 	response.send()
 	// })
-	app.use('/graphql', authenticatedOnly, buildGraphQLRouteHandler());
-	app.use('/graphiql', authenticatedOnly, graphiqlExpress({endpointURL: '/graphql'}))
+	app.use('/graphql', buildGraphQLRouteHandler());
+	app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}))
 	// app.use('/', (request, response) => {
 	// 	// response.redirect('/login')
 	// })

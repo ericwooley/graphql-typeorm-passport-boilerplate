@@ -20,4 +20,5 @@ type Query {
 type Mutation {
 	createList (name: String!): ShoppingList
 	addItemToList (name: String, listId: Int!, itemId: Int): ShoppingList
+	deleteShoppingList (listId: Int!): ShoppingList
 }

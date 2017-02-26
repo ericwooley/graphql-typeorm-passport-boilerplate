@@ -2,6 +2,7 @@ import {Request} from 'express'
 import User from '../../models/user'
 import {connection} from '../../models'
 export default async function user (_: any, args: any, request: Request) {
+	if (!request.user) return null
 	const userRepo = connection.getRepository(User)
 	const user = await userRepo.findOneById(request.user.id
 	// ,{
@@ -15,7 +16,6 @@ export default async function user (_: any, args: any, request: Request) {
 	if (!user) {
 		throw new Error('You are not logged in')
 	}
-	console.log('requesting lists')
 	// OUTPUT
 	// executing query:
 	// SELECT "lists"."id" AS "lists_id", "lists"."name" AS "lists_name", "lists"."owner" AS "lists_owner" FROM "shopping_list" "lists"
