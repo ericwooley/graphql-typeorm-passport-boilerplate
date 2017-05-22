@@ -35,6 +35,11 @@ If you want to see how to connect with this repo (using react) checkout [this re
 
 4. run `npm run test:watch` to re-run the tests whenver a file changes.
 
+## Setting up redis7
+
+To make a basic redis configuration change the `port` and `host` in the redisConfig (at least for the moment).
+
+
 ### Unit tests
 1. any file in `src/**/*.test.ts` run using mocha.
 

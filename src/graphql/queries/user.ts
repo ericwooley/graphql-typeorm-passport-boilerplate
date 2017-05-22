@@ -1,6 +1,7 @@
 import {Request} from 'express'
 import User from '../../models/user'
 import {connection} from '../../models'
+
 export default async function user (_: any, args: any, request: Request) {
 	if (!request.user) return null
 	const userRepo = connection.getRepository(User)
@@ -23,8 +24,11 @@ export default async function user (_: any, args: any, request: Request) {
 	// "user" "User" ON "User"."id"="lists"."owner"
 	// WHERE "lists"."id"=$1 -- PARAMETERS: [1]
 	// ^^^^^^ extra where clause being added.
+
 	const lists = await user.lists
 	console.log(lists)
+
 	delete user.password
+	
 	return user
 }

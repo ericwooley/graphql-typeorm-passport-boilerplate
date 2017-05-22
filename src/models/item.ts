@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import {Table, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, } from 'typeorm'
 import ShoppingList from './shoppingList'
+
 @Table()
 export default class Item {
 	@PrimaryGeneratedColumn()

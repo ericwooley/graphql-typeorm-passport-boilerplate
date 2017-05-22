@@ -8,10 +8,14 @@ import StoreItemLocation from './storeItemLocation'
 import {memoize} from 'lodash'
 import {yellow, red} from 'chalk'
 export let connection: Connection
-export async function getConnection (driver = {
-	type: "sqlite",
-	storage: 'devDatabase.db'
-}, enableLogging = true) {
+
+export async function getConnection (
+	driver = {
+		type: "sqlite",
+		storage: 'devDatabase.db'
+	},
+	enableLogging = true
+) {
 	if(!connection || !connection.isConnected) {
 		connection = await createConnection({
 			logging: {

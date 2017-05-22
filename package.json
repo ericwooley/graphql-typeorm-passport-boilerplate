@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev PORT=8090 nodemon -e ts --exec \"ts-node src/index.ts\"",
     "start": "nodemon build/index.js",
-    "build": "ts-node scripts/build.ts",
+    "build": "tsc src/index.ts",
     "cover": "nyc npm test",
     "test:coverage": "export NODE_ENV=test npm run cover && nyc check-coverage --lines 80 --functions 80 --branches 80",
     "test": "NODE_ENV=test mocha --compilers ts:ts-node/register src/**/*.test.ts",

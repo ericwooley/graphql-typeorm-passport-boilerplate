@@ -5,6 +5,7 @@ import createApp from '../app'
 import * as request from 'supertest'
 import loadTestDb from '../fixtures/loadTestDb'
 import {Connection} from 'typeorm'
+
 describe('graphql', () => {
 	describe('schema', () => {
 		it('should have all required types', () => {
@@ -18,6 +19,7 @@ describe('graphql', () => {
 				expect(schema.getType(type).toString()).to.equal(type))
 		})
 	})
+	
 	describe('queries', () => {
 		let app:Express
 		let connection: Connection

@@ -9,12 +9,15 @@ import * as connectRedis from 'connect-redis'
 import {Connection} from 'typeorm'
 import {red} from 'chalk'
 import * as cors from 'cors'
+
 const RedisStore = connectRedis(session)
+
 export default async function getServer (connection: Connection, isDev = false) {
 	let server = express()
+
 	if (isDev) {
 		const corsOptions = {
-			origin: function(origin: string, callback: Function){
+			  origin: function(origin: string, callback: Function){
 				// var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
 				callback(null, true);
 			},
@@ -22,18 +25,25 @@ export default async function getServer (connection: Connection, isDev = false) 
 		};
 		server.use(cors(corsOptions));
 	}
+
 	server.use(session({
 		secret: 'asdfasdfs',
 		genid: function (req) {
 			return uuid.v4();
 		},
-		store: new RedisStore({})
+		store: new RedisStore({
+			host: '127.0.0.1',
+			port: 6379
+		})
 	}))
+
 	server.use(bodyParser.urlencoded({
 		extended: true
 	}))
+
 	server.use(bodyParser.json());
 	server.use(flash())
 	server = await setupPassport(server, connection)
+
 	return server
 }

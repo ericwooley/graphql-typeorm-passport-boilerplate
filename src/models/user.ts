@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import {Table, PrimaryGeneratedColumn, Column, OneToMany, JoinTable, } from 'typeorm'
 import ShoppingList from './shoppingList'
 import * as bcrypt from 'bcrypt'
+
 @Table()
 export default class User {
 	@PrimaryGeneratedColumn()
