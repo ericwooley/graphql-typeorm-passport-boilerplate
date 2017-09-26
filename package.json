@@ -1,7 +1,7 @@
 {
-  "name": "pre-calculated-rest-api",
+  "name": "graphql-typeorm-passport-boilerplate",
   "version": "0.0.0",
-  "description": "RESTful API for exposing iKizmet pre-calucated data fields to external clients",
+  "description": "demo for graphql-typeorm with passport",
   "main": "build/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev PORT=8090 nodemon -e ts --exec \"ts-node src/index.ts\"",
